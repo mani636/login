@@ -1,25 +1,27 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import ParticlesComponent from './components/particles';
+import { Route, Router, Routes } from 'react-router-dom';
+import Login from './components/Login/Login';
+import Home from './components/Home/Home';
+import { useState } from 'react';
 
-function App() {
+const App = () => {
+  const [isLogin, setIsLogin] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className='main'>
+        <Routes>
+          <Route
+            path='/'
+            element={isLogin ? <Home /> : <Login setIsLogin={setIsLogin} />}
+          />
+        </Routes>
+        <ParticlesComponent id='particles' />
+      </div>
+    </>
   );
-}
+};
 
 export default App;
